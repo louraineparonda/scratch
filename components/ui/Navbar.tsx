@@ -1,26 +1,20 @@
-// components/ui/Navbar.tsx
-'use client';
+// components/navbar.tsx
 import Link from 'next/link';
 
-export default function Navbar() {
+const Navbar = () => {
   return (
-    <header className="bg-jade-600 text-white px-4 py-3 shadow-md">
-      <div className="max-w-6xl mx-auto flex items-center justify-between">
-        <Link href="/" className="text-xl font-semibold">
-          memori
-        </Link>
-        <nav className="space-x-4">
-          <Link href="/about" className="hover:underline">
-            About
-          </Link>
-          <Link href="/albums" className="hover:underline">
-            Albums
-          </Link>
-          <Link href="/upload" className="hover:underline">
-            Upload
-          </Link>
-        </nav>
+    <nav className="flex justify-between items-center p-4 bg-blue-500">
+      <div className="text-white font-bold text-lg">
+        <Link href="/">memori</Link>
       </div>
-    </header>
+      <div className="flex space-x-4">
+        <Link href="/" className="text-white">Home</Link>
+        <Link href="/about" className="text-white">About</Link>
+        <Link href="/contact" className="text-white">Contact</Link>
+        <Link href="/auth" className="bg-yellow-500 text-black px-4 py-2 rounded">Get Started</Link>
+      </div>
+    </nav>
   );
-}
+};
+
+export default Navbar;
