@@ -1,8 +1,7 @@
-@tailwind base;
+/*@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Base layer: CSS variables for light and dark mode */
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -70,7 +69,6 @@
   }
 }
 
-/* Utility layer: Make Tailwind aware of your semantic color classes */
 @layer utilities {
   .bg-background {
     background-color: hsl(var(--background));
@@ -90,6 +88,70 @@
 
   .text-muted-foreground {
     color: hsl(var(--muted-foreground));
+  }
+
+   Add more as you go! 
+}*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base layer: CSS variables for light and dark mode */
+@layer base {
+  :root {
+    --jade: #9fd5cb;
+    --mint: #c4edea;
+    --background: #f9fdfa;
+    --foreground: #1b2a2f;
+    --border: #d0e2df;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: #1b2a2f;  /* Dark mode background */
+    --foreground: #f9fdfa;  /* Dark mode foreground */
+    --border: #d0e2df;      /* Dark mode border */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Utility layer: Make Tailwind aware of your semantic color classes */
+@layer utilities {
+  .bg-background {
+    background-color: var(--background);
+  }
+
+  .text-foreground {
+    color: var(--foreground);
+  }
+
+  .border-border {
+    border-color: var(--border);
+  }
+
+  .bg-jade {
+    background-color: var(--jade);
+  }
+
+  .text-jade {
+    color: var(--jade);
+  }
+
+  .bg-mint {
+    background-color: var(--mint);
+  }
+
+  .text-mint {
+    color: var(--mint);
   }
 
   /* Add more as you go! */
