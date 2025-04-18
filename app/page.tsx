@@ -27,7 +27,7 @@ const Homepage = () => {
             Welcome to <span className="text-primary">Memori</span>
           </h1>
           <p className="text-base sm:text-lg text-muted-foreground">
-            Collect and cherish memories together — wherever, whenever.
+            Collect and cherish memories together — wherever, whenever. 
           </p>
         </div>
       </main>

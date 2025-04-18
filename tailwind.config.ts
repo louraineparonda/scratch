@@ -102,6 +102,7 @@ const config = {
       colors: {
         // Custom colors for memori
         jade: "#9fd5cb",
+        darkJade: "#3a7463", 
         mint: "#c4edea",
         background: "#f9fdfa",
         foreground: "#1b2a2f",

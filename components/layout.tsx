@@ -12,31 +12,13 @@
 
 // pages/_app.tsx
 // components/layout.tsx
-import Link from "next/link";
 import { ReactNode } from "react";
+import Navbar from "./ui/navbar"; // Import your Navbar component
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="bg-background text-foreground">
-      {/* Navbar */}
-      <header className="bg-white shadow-md py-4">
-        <nav className="max-w-5xl mx-auto px-5 flex justify-between items-center">
-          <Link href="/" className="text-2xl font-semibold text-primary">
-            memori
-          </Link>
-          <div className="space-x-4">
-            <Link href="/" className="text-base text-primary hover:text-accent">
-              Home
-            </Link>
-            <Link href="/about" className="text-base text-primary hover:text-accent">
-              About
-            </Link>
-            <Link href="/contact" className="text-base text-primary hover:text-accent">
-              Contact
-            </Link>
-          </div>
-        </nav>
-      </header>
+      <Navbar /> {/* Use the Navbar component */}
 
       {/* Main content area */}
       <main className="max-w-5xl mx-auto px-5 py-8">{children}</main>
@@ -50,6 +32,7 @@ export default function Layout({ children }: { children: ReactNode }) {
     </div>
   );
 }
+
 
 
 
