@@ -44,9 +44,12 @@ export default function Navbar() {
           <Button asChild variant="white">
             <Link href="/join_album">Join an Album</Link>
           </Button>
-          <Button variant="darkButton">
-            Get Started
-          </Button>
+          <Link href="/login">
+            <Button variant="white">Login</Button>
+          </Link>
+          <Link href="/signup">
+            <Button variant="white">Get Started</Button>
+          </Link>
         </div>
       </nav>
     </header>

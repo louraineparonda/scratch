@@ -10,7 +10,7 @@ export default function JoinPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen pt-16"> {/* pt-16 ensures content is not hidden under the navbar */}
+    <div className="flex items-center justify-center min-h-screen"> {/* pt-16 ensures content is not hidden under the navbar */}
       <div className="text-center">
         <h1 className="text-2xl font-bold">Enter Album Code:</h1>
         <input
