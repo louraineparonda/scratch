@@ -1,25 +1,43 @@
-"use client";
+'use client';
 
 import Link from 'next/link';
 import { Button } from './button';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { supabase } from '@/utils/supabaseClient';
+import type { User } from '@supabase/auth-js';
 
 export default function Navbar() {
   const [showNavbar, setShowNavbar] = useState(true);
+  const [user, setUser] = useState<User | null>(null);
 
-  // Hide the navbar after scrolling a certain amount
+  // Scroll-based visibility
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 100) { // Change 100 to whatever value suits you
-        setShowNavbar(false);
-      } else {
-        setShowNavbar(true);
-      }
+      setShowNavbar(window.scrollY <= 100);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Supabase auth state
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => {
+      setUser(data.user);
+    });
+
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => {
+      listener?.subscription.unsubscribe();
+    };
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setUser(null);
+  };
 
   return (
     <header
@@ -31,7 +49,7 @@ export default function Navbar() {
         <Link href="/" className="text-2xl font-semibold text-white">
           memori
         </Link>
-        <div className="space-x-4">
+        <div className="space-x-4 flex items-center">
           <Link href="/about" className="text-base text-darkJade hover:text-white">
             About
           </Link>
@@ -41,15 +59,29 @@ export default function Navbar() {
           <Link href="/pricing" className="text-base text-darkJade hover:text-white">
             Pricing
           </Link>
-          <Button asChild variant="white">
-            <Link href="/join_album">Join an Album</Link>
-          </Button>
-          <Link href="/login">
-            <Button variant="white">Login</Button>
+          <Link href="/join_album">
+            <Button variant="white">Join an Album</Button>
           </Link>
-          <Link href="/signup">
-            <Button variant="white">Get Started</Button>
-          </Link>
+
+          {user ? (
+            <>
+              <Link href="/profile">
+                <Button variant="white">Profile</Button>
+              </Link>
+              <Button variant="white" onClick={handleLogout}>
+                Logout
+              </Button>
+            </>
+          ) : (
+            <>
+              <Link href="/login">
+                <Button variant="white">Login</Button>
+              </Link>
+              <Link href="/signup">
+                <Button variant="white">Get Started</Button>
+              </Link>
+            </>
+          )}
         </div>
       </nav>
     </header>
