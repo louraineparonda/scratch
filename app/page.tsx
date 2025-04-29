@@ -16,12 +16,15 @@
 // }
 
 // pages/homepage.tsx
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+
 
 const Homepage = () => {
   return (
     <div className="flex flex-col min-h-screen">
 
-      <main className="flex flex-1 items-center justify-center px-4 sm:px-6 lg:px-8 bg-background text-foreground">
+      <main className="flex flex-1 justify-center px-4 sm:px-6 lg:px-8 bg-background text-foreground">
         <div className="text-center max-w-2xl">
           <h1 className="text-3xl sm:text-5xl font-bold mb-4">
             Welcome to <span className="text-primary">Memori</span>
@@ -29,6 +32,9 @@ const Homepage = () => {
           <p className="text-base sm:text-lg text-muted-foreground">
             Collect and cherish memories together — wherever, whenever. 
           </p>
+          <Link href="/join_album">
+            <Button variant="white">Join an Album</Button>
+          </Link>
         </div>
       </main>
     </div>

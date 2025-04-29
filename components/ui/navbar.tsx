@@ -7,17 +7,7 @@ import { supabase } from '@/utils/supabaseClient';
 import type { User } from '@supabase/auth-js';
 
 export default function Navbar() {
-  const [showNavbar, setShowNavbar] = useState(true);
   const [user, setUser] = useState<User | null>(null);
-
-  // Scroll-based visibility
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowNavbar(window.scrollY <= 100);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Supabase auth state
   useEffect(() => {
@@ -40,27 +30,20 @@ export default function Navbar() {
   };
 
   return (
-    <header
-      className={`bg-jade shadow-md py-4 sticky top-0 left-0 w-full z-10 transition-all ${
-        showNavbar ? 'opacity-100' : 'opacity-0 animate-slide-up'
-      }`}
-    >
+    <header className="bg-jade shadow-md py-4 sticky top-0 left-0 w-full z-10">
       <nav className="max-w-5xl mx-auto px-5 flex justify-between items-center">
         <Link href="/" className="text-2xl font-semibold text-white">
           memori
         </Link>
-        <div className="space-x-4 flex items-center">
-          <Link href="/about" className="text-base text-darkJade hover:text-white">
+        <div className="space-x-8 flex items-center">
+          <Link href="/about" className="text-base text-white hover:text-white">
             About
           </Link>
-          <Link href="/contact" className="text-base text-darkJade hover:text-white">
+          <Link href="/contact" className="text-base text-white hover:text-white">
             Contact
           </Link>
-          <Link href="/pricing" className="text-base text-darkJade hover:text-white">
+          <Link href="/pricing" className="text-base text-white hover:text-white">
             Pricing
-          </Link>
-          <Link href="/join_album">
-            <Button variant="white">Join an Album</Button>
           </Link>
 
           {user ? (
@@ -74,8 +57,8 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <Link href="/login">
-                <Button variant="white">Login</Button>
+              <Link href="/pricing" className="text-base text-white hover:text-white">
+                Login
               </Link>
               <Link href="/signup">
                 <Button variant="white">Get Started</Button>
