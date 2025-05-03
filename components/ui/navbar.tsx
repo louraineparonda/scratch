@@ -57,7 +57,7 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <Link href="/pricing" className="text-base text-white hover:text-white">
+              <Link href="/login" className="text-base text-white hover:text-white">
                 Login
               </Link>
               <Link href="/signup">

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '../../utils/supabaseClient';// Make sure to set up the supabaseClient
+import Link from 'next/link';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -40,11 +41,14 @@ export default function LoginPage() {
           />
           <input
             type="password"
-            className="w-full p-2 mb-4 border border-gray-300 rounded"
+            className="w-full p-2 mb-2 border border-gray-300 rounded"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <Link href="/reset-password" className="text-sm text-primary hover:underline mb-4 block text-center">
+            Forgot password?
+           </Link>
           <button
             type="submit"
             className="w-full bg-jade text-white py-2 rounded hover:bg-darkJade"
